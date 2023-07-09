@@ -19,7 +19,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copy the built app from the previous stage to the NGINX web server
-COPY --from=build /app/dist/fatorhtak /usr/share/nginx/html
+COPY --from=build /app/dist/kripton /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
