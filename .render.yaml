@@ -1,0 +1,6 @@
+version: 1
+nodeVersion: 14
+buildCommand: npm install --force && npm run build --prod
+staticPublishPath: dist
+staticPublishIgnore:
+  - node_modules
