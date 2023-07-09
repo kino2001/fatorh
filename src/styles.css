@@ -1,5 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+/* Import Angular Material theme */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-table{text-align: center !important;}
+/* Import Bootstrap CSS */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/* Import Perfect Scrollbar CSS */
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+/* Import ngx-lightbox CSS */
+@import "~ngx-lightbox/lightbox.css";
+
+/* Import metismenujs CSS */
+@import "~metismenujs/dist/metismenujs.css";
+
+/* Import other custom CSS files */
+@import "src/assets/vendor/owl-carousel/owl.carousel.css";
+@import "src/assets/css/style.css";
+@import "src/assets/css/dashboard.css";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+table {
+  text-align: center !important;
+}
