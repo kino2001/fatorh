@@ -4,8 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { Index1Component } from './dashboard/index1/index1.component';
 
-
-
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 
@@ -16,8 +14,6 @@ import { Error403Component } from './pages/error403/error403.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Error503Component } from './pages/error503/error503.component';
-
-
 
 import { CustomersComponent } from './Data/customers/customers.component';
 import { ProductsComponent } from './Data/varieties/products/products.component';
@@ -54,81 +50,82 @@ import { PricesComponent } from './Screens/prices/prices.component';
 import { ContactComponent } from './Screens/contact/contact.component';
 
 const routes: Routes = [
-                {path: '', redirectTo: 'admin/index', pathMatch: 'full' },
-                       { 
-                        path: 'admin', component: AdminComponent,canActivate: [AuthGuard], children: [
-                        {path: '', component: Index1Component},
-                        {path: 'index', component: Index1Component},
+  { path: '', redirectTo: 'admin/index', pathMatch: 'full' },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: Index1Component },
+      { path: 'index', component: Index1Component },
 
-                        {path: 'customers', component: CustomersComponent},
-                        {path: 'update-customer/:id', component: UpdateComponent},
-                        {path: 'customer-analytics/:id', component: AnalyticsComponent},
+      { path: 'customers', component: CustomersComponent },
+      { path: 'update-customer/:id', component: UpdateComponent },
+      { path: 'customer-analytics/:id', component: AnalyticsComponent },
 
-                        {path: 'products', component: ProductsComponent},
-                        {path: 'update-product/:id', component: UpdateProductComponent},
-                        {path: 'product-analytics/:id', component: ProductAnalyticsComponent},
+      { path: 'products', component: ProductsComponent },
+      { path: 'update-product/:id', component: UpdateProductComponent },
+      { path: 'product-analytics/:id', component: ProductAnalyticsComponent },
 
-                        {path: 'importation', component: ImportaionComponent},
+      { path: 'importation', component: ImportaionComponent },
 
-                        {path: 'branches', component: BranchesComponent},
-                        {path: 'branch-analytics/:id', component: BranchAnalyticsComponent},
-                        {path: 'update-branch/:id', component: UpdateBranchComponent},
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branch-analytics/:id', component: BranchAnalyticsComponent },
+      { path: 'update-branch/:id', component: UpdateBranchComponent },
 
-                        {path: 'company', component: CompanyComponent},
-                        {path: 'update-company/:id', component: UpdatecompanyComponent},
-                        {path: 'company-analytics/:id', component: CompanyAnalyticsComponent},
+      { path: 'company', component: CompanyComponent },
+      { path: 'update-company/:id', component: UpdatecompanyComponent },
+      { path: 'company-analytics/:id', component: CompanyAnalyticsComponent },
 
-                        {path: 'faq', component: FaqComponent},
-                        
-                        {path: 'payment-bonds', component:PaymentBondsComponent },
-                        {path: 'view-payment-bonds/:id', component:ViewPaymentComponent },
-                        {path: 'view-after-signing/:id', component:ViewAfterSigningComponent },
+      { path: 'faq', component: FaqComponent },
 
-                        
-                        {path: 'salesperson', component: SalespersonComponent},
-                        {path: 'update-salesperson/:id', component: UpdateSalespersonComponent},
-                        {path: 'salesperson-analytics/:id', component: SalespersonAnalyticsComponent},
+      { path: 'payment-bonds', component: PaymentBondsComponent },
+      { path: 'view-payment-bonds/:id', component: ViewPaymentComponent },
+      { path: 'view-after-signing/:id', component: ViewAfterSigningComponent },
 
-                        {path: 'units', component: UnitsComponent},
-                        {path: 'update-unit/:id', component: UpdateUnitComponent},
+      { path: 'salesperson', component: SalespersonComponent },
+      { path: 'update-salesperson/:id', component: UpdateSalespersonComponent },
+      {
+        path: 'salesperson-analytics/:id',
+        component: SalespersonAnalyticsComponent,
+      },
 
-                        {path: 'users', component: UsersComponent},
-                        {path: 'update-user/:id', component: UpdateUsersComponent},
-                        {path: 'user-analytics/:id', component: UserAnalyticsComponent},
+      { path: 'units', component: UnitsComponent },
+      { path: 'update-unit/:id', component: UpdateUnitComponent },
 
-                        {path: 'invoices', component: InvoicesComponent},
-                        {path: 'add-invoice', component: AddInvoiceComponent},
+      { path: 'users', component: UsersComponent },
+      { path: 'update-user/:id', component: UpdateUsersComponent },
+      { path: 'user-analytics/:id', component: UserAnalyticsComponent },
 
-                        {path: 'index-1', component: Index1Component},
-                        {path: 'dashboard', component: Index1Component},
-                
-                    ]
-                },
-                        
-                        {path: 'home', component: HomeComponent},
-                        {path: 'about', component: AboutComponent},
-                        {path: 'prices', component: PricesComponent},
-                        {path: 'contact', component: ContactComponent},
+      { path: 'invoices', component: InvoicesComponent },
+      { path: 'add-invoice', component: AddInvoiceComponent },
 
-                        {path: 'page-register', component: RegisterComponent},
-                        {path: 'page-login', component: LoginComponent},
-                        {path: 'page-lock-screen', component: LockScreenComponent},
-                        {path: 'page-forgot-password', component: ForgotPasswordComponent},
-                        {path: 'page-otp', component: OtpComponent},
-                        {path: 'page-error-400', component: Error400Component},
-                        {path: 'page-error-403', component: Error403Component},
-                        {path: 'page-error-404', component: Error404Component},
-                        {path: 'page-error-500', component: Error500Component},
-                        {path: 'page-error-503', component: Error503Component},
-                        
-                        {path: '**', component: Error404Component},
+      { path: 'index-1', component: Index1Component },
+      { path: 'dashboard', component: Index1Component },
+    ],
+  },
 
-                
-                
-              ];
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'prices', component: PricesComponent },
+  { path: 'contact', component: ContactComponent },
+
+  { path: 'page-register', component: RegisterComponent },
+  { path: 'page-login', component: LoginComponent },
+  { path: 'page-lock-screen', component: LockScreenComponent },
+  { path: 'page-forgot-password', component: ForgotPasswordComponent },
+  { path: 'page-otp', component: OtpComponent },
+  { path: 'page-error-400', component: Error400Component },
+  { path: 'page-error-403', component: Error403Component },
+  { path: 'page-error-404', component: Error404Component },
+  { path: 'page-error-500', component: Error500Component },
+  { path: 'page-error-503', component: Error503Component },
+
+  { path: '**', component: Error404Component },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
