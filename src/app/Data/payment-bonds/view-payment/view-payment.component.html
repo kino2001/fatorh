@@ -1,0 +1,170 @@
+<div class="content-body my-1">
+
+    <div class="container-fluid ">
+
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4></h4>
+
+                    <p class="mb-0"></p>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                </ol>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-12 ">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                <div class=" mb-3">
+                                    <h2 class="mx-3">فاتورتك</h2>
+                                   <a href="https://fatorhtak.onrender.com/exportPdf/receipt/{{ReciptId}}" target="_blank" rel="noopener noreferrer">
+                                     <button (click)="exportPdf()"  type="submit" class="btn btn-primary m-auto text-center" >تحميل السند للتوقيع </button>
+                                   </a> 
+
+                                </div>
+
+
+
+                                <div class="col-lg-12 ">
+                                    <div class="card text-dark mb-3">
+                                        <div class="card-header"> محتوى الإيصال
+                                            <div class="text-right">
+                                                <img [src]="CompanyLogo" alt="" class="rounded">
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body w-75 m-auto">
+                                            <div class="read-content-body">
+                                                <h2 class="mb-4 text-center">إيصال سند دفع</h2>
+                                                <div class=" ">
+                                                    <div class="form-group row">
+                                                        <label for="date"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2">في
+                                                            تاريخ</label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="date" type="date"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="InDate">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="day"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2">الموافق
+                                                            يوم</label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="day" type="text"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="InDay">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="tota;"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2"> تم قبض
+                                                            مبلغ وقدرة</label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="total" type="text"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="TotalMoney">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="from"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2"> من
+                                                            شركة </label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="from" type="text"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="FromCompany">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="to"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2"> الي
+                                                            شركة </label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="to" type="text"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="ToCompany">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Reason"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2">
+                                                            التسجيل الضريبي</label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="Reason" type="text"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="TaxReg">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Tax"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2">
+                                                            بغرض</label>
+
+                                                        <div class="col-sm-8">
+                                                            <input id="Tax" type="text"
+                                                                class="form-control form-control-lg" readonly
+                                                                [(ngModel)]="Reason">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="myTextarea"
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2"> محتوي
+                                                            الإيصال</label>
+
+                                                        <div class="col-sm-12">
+                                                            <textarea class="form-control " style="font: size 25px;"
+                                                                id="myTextarea" name="myTextarea" rows="4" cols="50"
+                                                                readonly [(ngModel)]="ReciptContent">
+                                                                </textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label
+                                                            class="col-sm-4 col-form-label col-form-label-lg h2">التوقيع
+                                                        </label>
+
+                                                        <div class="col-sm-8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!---->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

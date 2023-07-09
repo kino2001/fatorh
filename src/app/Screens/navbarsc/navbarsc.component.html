@@ -1,0 +1,56 @@
+
+
+<nav class="navbar navbar-expand-lg  fixed-top " *ngIf="!isLogin">
+<nav class="navbar navbar-expand-lg  fixed-top " *ngIf="isLogin">
+
+    <div class="container">
+        <a  class="navbar-brand " style="color: #363062;" routerLink='home'>Fatorhtak</a>
+        <button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+         aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon "></span>
+          <i class="fa-solid fa-file-invoice" style="color:#363062 ;"></i>
+        </button>
+      
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto ">
+    
+            <li class="nav-item " [routerLinkActive]="['active-2']" [routerLinkActiveOptions]="{exact:true}">
+              <a  class="nav-link" routerLink='home'>Home <span class="sr-only">(current)</span></a>
+            </li>
+    
+            <li class="nav-item " [routerLinkActive]="['active-2']" [routerLinkActiveOptions]="{exact:true}">
+              <a  class="nav-link" routerLink='about'>About</a>
+            </li>
+            
+            <li class="nav-item " [routerLinkActive]="['active-2']" [routerLinkActiveOptions]="{exact:true}">
+                <a  class="nav-link" routerLink='prices'>Prices</a>
+              </li>
+         
+              <li class="nav-item " [routerLinkActive]="['active-2']" [routerLinkActiveOptions]="{exact:true}">
+                <a   class="nav-link " routerLink='contact'>Conact Us</a>
+              </li> 
+ 
+          </ul>
+          <div class="navbar-auth" id="authBTNs">
+
+            <button  class="btn mx-3" [routerLinkActive]="['active2']" [routerLinkActiveOptions]="{exact:true}">
+                <a  routerLink="page-register">Register</a>
+            </button>
+
+            <button  class="btn mx-3" [routerLinkActive]="['active2']" [routerLinkActiveOptions]="{exact:true}" >
+                <a  routerLink="page-login">Login</a>
+            </button>
+          
+            <!-- <button class=" btn" >
+              <a  routerLink="logout">الخروج</a>
+            </button> -->
+
+          
+        </div>
+
+
+        </div>
+    </div>
+   
+  </nav>

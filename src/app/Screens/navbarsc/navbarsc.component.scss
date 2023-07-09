@@ -1,0 +1,101 @@
+.navbar
+{
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+    // border-bottom: #363062 solid 1px;
+    background-color: #fff;
+}
+.navbar-brand
+{
+    color: white ;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-item a
+{
+    color: #363062 !important;
+    white-space: nowrap;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    padding: 10px 10 10px 30px;
+    border-style: none;
+}
+.nav-item a:hover
+{
+     color: #363062;
+     transition: 0.3s;
+}
+.navbar-nav .active2 a {
+    background-color: #363062 !important;
+    color: #fff  !important;
+    border-radius: 50px;
+}
+
+ul
+{
+   text-decoration: none;
+}
+
+.active-2 a
+{
+    color: #363062 !important;
+    border-bottom:2px #363062 solid !important;
+}
+
+.active2 a
+{
+    background-color: #363062 !important;
+    color: #fff  !important;
+    border-radius: 50px;
+
+}
+
+.nav-item {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    border-radius: 50%;
+}
+
+.navbar-auth button
+{
+    background-color: #fff;
+    min-width: 110px;
+    border-radius: 50px;
+    transition: all 0.3s ease-in;
+    border: 1px solid #363062 ;
+    padding: 0;
+    font-size: 14px;
+}
+.navbar-auth button:hover 
+{
+      background-color: transparent;
+      border-color: #363062;
+      color: #363062;
+}
+.navbar-auth button a:hover
+{
+    text-decoration: none;
+}
+.navbar-auth button a
+{
+    display: block;
+    text-align: center;
+    padding: .375rem .75rem;
+  
+}
+.navbar-toggler-icon 
+{
+      width: 30px;
+      height: 30px;
+      background-color: #363062;
+      font-size: 16px;
+}

@@ -1,0 +1,15 @@
+.bootgrid-header {
+    padding: 0 !important;
+    margin: 0;
+    text-align: center !important;
+
+    @include respond(phone) {
+        .actionBar {
+            padding: 0;
+        }
+    
+        .search {
+            margin: 0 0 10px 0;
+        }
+    }
+}

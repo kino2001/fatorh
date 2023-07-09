@@ -1,0 +1,199 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="content-body ">
+	<div class="container-fluid ">
+
+        <p></p>
+
+        <div class="row page-titles mx-0">
+          <div class="col-sm-6 p-md-0">
+              <div class="welcome-text">
+                <h4>بيانات المستخدمين</h4>
+
+                <p class="mb-0">لوحة معلومات الأعمال</p>
+              </div>
+          </div>
+          <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="javascript:void(0)">المستخدمين</a></li>
+                  <li class="breadcrumb-item active"><a href="javascript:void(0)">لوحة التحكم</a></li>
+              </ol>
+          </div>
+      </div>
+
+        <!-- row -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+        
+        <form class="m-2"> 
+          <button (click)="openXl(content)" type="button" class="btn btn-sm btn-primary m-2"><i class="fa fa-plus color-white mx-1"></i>  اضافة مستخدم</button>
+
+          <div class="form-group ">
+            <label for="seaarch" class="ml-2">قم بالبحث هنا</label>
+               <input class="form-control ml-2 w-100" type="text" name="seaarch"
+                [ngModelOptions]="{standalone: true}" id="seaarch" [(ngModel)]="term" placeholder="بحث ..."/>
+          </div>
+            <div class="table-responsive mx-2">
+              <table class="table  text-center table-bordered table-hover ">
+                <thead >
+                <tr>
+                  <th scope="col" > #</th>
+                  <th scope="col" > اسم المستخدم </th>
+                  <th scope="col"> نوع المستخدم</th>
+                  <th scope="col"> التحقق</th>
+                  <th scope="col">الحالة</th>
+                  <th scope="col">تعديل</th>
+                  <th scope="col">حذف</th>
+                </tr>
+                </thead>
+                <tbody class="">
+
+                <tr *ngFor="let user of allUsers | filter:term |paginate: {itemsPerPage:5, currentPage:p } |filter:term ; let i = index ">
+                  <td><ngb-highlight></ngb-highlight>{{i+1}} </td>
+                  <td><ngb-highlight [result]="user.user_name"></ngb-highlight> </td>
+                  <td *ngIf="user.user_type ==100" class="text-success"><ngb-highlight ></ngb-highlight>المالك</td> 
+                  <td *ngIf="user.user_type ==101" class="text-info"><ngb-highlight ></ngb-highlight>مستخدم</td> 
+
+                  <td *ngIf="user.verified ==1" ><ngb-highlight ></ngb-highlight><i class="fa fa-check-circle-o text-success" style="font-size: 25px;"></i></td> 
+                  <td  *ngIf="user.verified ==0"><ngb-highlight ></ngb-highlight><i class="fa fa-close text-danger" style="font-size: 25px;"></i></td> 
+
+
+            
+
+
+                  <td  class="action"> 
+                    <button (click)="changeStatus(user?.user_id, user.status)" class="btn" >
+                      <i style="font-size: 25px;" class="fa fa-toggle-on {{ user.status==1 ? 'fa fa-toggle-on' : 'fa fa-toggle-off' }}" 
+                      [ngStyle]="{ 'color': user.status == 1 ? '#2199E8' : 'rgb(216, 6, 6)' }"
+                      ></i>
+                    </button> 
+                    </td>
+
+           
+
+                        <td  class="add-2 action c-pointer">
+                                 <i (click)="getId(user?.user_id)" routerLink="/admin/update-user/{{user.user_id}}"  class="fa fa-pencil scale5" style="color:rgb(19, 174, 19)"></i>
+                        </td>
+    
+                         <td  class="action  c-pointer">
+                         <i *ngIf="user.status == 0" (click)="getId(user?.user_id);openVerticallyCentered(dataDeleted)"
+                          class="fa fa-trash text-danger"
+                          style="font-size: 25px;" data-toggle="modal" aria-label="Close" data-target="#delete"></i>
+
+                          <i *ngIf="user.status == 1" (click)="getId(user?.user_id)"
+                          class="fa fa-close "
+                          style="font-size: 25px;" ></i>
+                        </td>
+                </tr>
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event" class="m-auto my-3"> </pagination-controls>                
+
+             </div>
+        
+             <!-- <mat-paginator [length]="100"
+             [pageSize]="10"
+             [pageSizeOptions]="[5, 10, 25, 100]">
+                  </mat-paginator>
+         -->
+        </form>
+
+        </div>
+        </div>
+      </div>
+        </div>
+        </div>
+
+
+                <!--Delete-->
+
+                <ng-template #dataDeleted let-modal>
+                    <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <p>هل أنت متأكد من حذف هذا العنصر ؟</p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">الغاء</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteCustomer();close('Close click')">حذف</button>
+          
+                    </div>
+                  </ng-template>
+
+
+
+                          <!-- Add -->
+
+                          <ng-template #content let-modal id="add">
+                            <div class="modal-header">
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="authincation">
+                                <div class="container ">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-lg-12 ">
+                                            <div class="authincation-content">
+                                                <div class="row no-gutters">
+                                                    <div class="col-xl-12">
+                                                        <div class="auth-form">
+                                                         <div class="text-center mb-3">
+                                                           <h2>فاتورتك</h2>
+                                                          </div>
+                                                            <form class="row form-group" [formGroup]="addUser">
+                                                              <div class="col-lg-4">
+                                                                  <div class="card text-dark mb-3">
+                                                                      <div class="card-header">أسم المستخدم </div>
+                                                                      <div class="card-body">
+                                                                          <input type="text" class="form-control" formControlName="user_name" />
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <!---->
+                                                              <div class="col-lg-4">
+                                                                  <div class="card text-dark mb-3">
+                                                                      <div class="card-header">رقم الهاتف</div>
+                                                                      <div class="card-body">
+                                                                          <input type="text" class="form-control" formControlName="phoneNumber" />
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                  
+                                                              <div class="col-lg-4">
+                                                                  <div class="card text-dark mb-3">
+                                                                      <div class="card-header">الرقم السري</div>
+                                                                      <div class="card-body">
+                                                                          <input type="password" class="form-control" formControlName="password" />
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                         
+                                                         
+                                                              <button  (click)="addedData();dismiss('Cross click')" type="submit"
+                                                              class="btn btn-primary btn-block">اضافة مستخدم
+                                                              </button>
+                  
+                                                          </form>
+                                      
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">الغاء</button>
+                            </div>
+                          </ng-template>

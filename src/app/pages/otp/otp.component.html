@@ -1,0 +1,32 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="authincation h-100">
+    <div class="container vh-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                <div class="text-center mb-3">
+                                    <h2>Fawater</h2>
+                                </div>
+                                <h4 class="text-center mb-4">Otp Verify</h4>
+                                    <div class="form-group">
+                                        <label><strong>OTP Code</strong></label>
+                                        <input [(ngModel)]="otpCode"
+                                        class=" form-control " 
+                                        placeholder="Code"
+                                        type="number">
+                                    </div>
+                                    <div class="text-center">
+                                        <button (click)="otp()"  [disabled]="!otpCode" type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

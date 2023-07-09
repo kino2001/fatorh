@@ -1,0 +1,104 @@
+<div class="deznav">
+    <div class="deznav-scroll" [perfectScrollbar]>
+
+        
+     
+        <ul class="metismenu" id="menu" metis-menu>
+    
+
+            <li class="{{(currentHref == '/admin/index') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/index']" class="ai-icon {{(currentHref == '/admin/index') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">لوحة التحكم</span>
+                </a>
+            </li>
+
+            <li [ngClass]="{'mm-active': apsArray.indexOf(currentHref) > -1}">
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-television"></i>
+                    <span class="nav-text">الأصناف</span>
+                </a>
+                <ul aria-expanded="false" [ngClass]="{'mm-show': apsArray.indexOf(currentHref) > -1}">
+                    <li><a [routerLink]="['/admin/products']" class="{{(currentHref == '/admin/products') ? 'mm-active' : ''}}"><i class="fa fa-cart-plus"></i> المنتجات</a></li>
+                    <li><a [routerLink]="['/admin/importation']" class="{{(currentHref == '/admin/importation') ? 'mm-active' : ''}}"> <i class="flaticon-381-download"></i> الاستيراد</a></li>
+            
+                </ul>
+                
+            </li>
+
+
+            <li class="{{(currentHref == '/admin/customers') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/customers']" class="ai-icon {{(currentHref == '/admin/customers') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-user-4"></i>
+                    <span class="nav-text">العملاء</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/branches') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/branches']" class="ai-icon {{(currentHref == '/admin/branches') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-home-2"></i>
+                    <span class="nav-text">الفروع</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/users') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/users']" class="ai-icon {{(currentHref == '/admin/users') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-user-9"></i>
+                    <span class="nav-text">المستخدمين</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/salesperson') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/salesperson']" class="ai-icon {{(currentHref == '/admin/salesperson') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-user-2"></i>
+                    <span class="nav-text">مندوبي المبيعات</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/company') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/company']" class="ai-icon {{(currentHref == '/admin/company') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-home"></i>
+                    <span class="nav-text">الشركة</span>
+                </a>
+            </li>
+
+      
+
+            <li class="{{(currentHref == '/admin/invoices') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/invoices']" class="ai-icon {{(currentHref == '/admin/invoices') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="flaticon-381-file-2"></i>
+                    <span class="nav-text">الفواتير</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/unit') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/units']" class="ai-icon {{(currentHref == '/admin/unit') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="fa fa-building"></i>
+                    <span class="nav-text">وحدات القياس</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/payment-bonds') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/payment-bonds']" class="ai-icon {{(currentHref == '/admin/payment-bonds') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="fa fa-money"></i>
+                    <span class="nav-text">سندات الدفع</span>
+                </a>
+            </li>
+
+            <li class="{{(currentHref == '/admin/faq') ? 'mm-active' : ''}}">
+                <a [routerLink]="['/admin/faq']" class="ai-icon {{(currentHref == '/admin/faq') ? 'mm-active' : ''}}" aria-expanded="false">
+                    <i class="fa fa-question-circle-o"></i>
+                    <span class="nav-text">الأسئلة الشائعة</span>
+                </a>
+            </li>
+            
+           
+        </ul>
+<!--         
+       -->
+        <div class="copyright text-center">
+            <p >جميع الحقوق محفوظة 2023   </p>
+            <p class="fs-12">تم الانشاء بواسطة سهل سوفت</p>
+        </div>
+    </div>
+</div>

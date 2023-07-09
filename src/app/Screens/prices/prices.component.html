@@ -1,0 +1,52 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+	<div class="container-fluid mt-5 pt-5 ">
+
+        <p></p>
+
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="demo">
+                    <div class="container">
+                        <div class="row ">
+                            <h2 class="heading-title text-center"> Subscription information</h2>
+                        </div>
+            
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let active of allActivePlans">
+                                <div class="pricingTable">
+                                    <div class="pricingTable-header">
+                                        <h3 class="heading">{{active.plan_name_ar}}</h3>
+                                        <div class="price-value">{{active.price}}
+                                            <span class="currency">ريال سعودي</span>
+                                        </div>
+                                    </div>
+                                   
+                                     <div class="pricing-content">
+                                        <h4>{{active.number_of_documents}} عدد المستندات :</h4>
+                                        
+                                        <p>{{active.description_ar}}</p>
+                                      </div>
+                                      <button type="button" class="btn btn-lg read btn-primary m-2">اشتراك</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+

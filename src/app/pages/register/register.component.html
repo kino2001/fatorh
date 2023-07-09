@@ -1,0 +1,157 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="authincation h-100">
+        <div class="container vh-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+									<div class="text-center mb-3">
+										<h2>Fatorhtak</h2>
+									</div>
+                                    <h4 class="text-center mb-4">Sign up your account</h4>
+                                    <form class="row" [formGroup]="registerForm" (ngSubmit)="submitRigisterForm(registerForm)">
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label class="mb-1"><strong>Company Name</strong></label>
+                                            <input type="text" formControlName="companyName" class="form-control" placeholder="Company Name">
+                                            <div *ngIf="registerForm.get('companyName')?.errors != null && registerForm.get('companyName')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('companyName')?.errors?.required" class=" my-2"> Company Name Is Requierd</p>
+                                                <p *ngIf="registerForm.get('companyName')?.errors?.minlength"  class="my-2 text-danger">The name must be at least 3 characters</p>
+                                                <p *ngIf="registerForm.get('companyName')?.errors?.maxlength"  class="my-2 text-danger"> The name must not exceed 50 characters</p>
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label class="mb-1"><strong>Company Name Arabic</strong></label>
+                                            <input type="text" formControlName="companyNameAr" class="form-control" placeholder="Company Name Arabic">
+                                            <div *ngIf="registerForm.get('companyNameAr')?.errors != null && registerForm.get('companyNameAr')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('companyNameAr')?.errors?.required" class=" my-2"> Company Name Arabic Is Requierd</p>
+                                                <p *ngIf="registerForm.get('companyNameAr')?.errors?.minlength"  class="my-2 text-danger">The name must be at least 6 characters</p>
+                                                <p *ngIf="registerForm.get('companyNameAr')?.errors?.maxlength"  class="my-2 text-danger"> The name must not exceed 20 characters</p>
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label class="mb-1"><strong>Company Address</strong></label>
+                                            <input type="text" formControlName="address" class="form-control" placeholder="Company Addres">
+                                            <div *ngIf="registerForm.get('address')?.errors != null && registerForm.get('address')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('address')?.errors?.required" class=" my-2"> Company Address Is Requierd</p>
+            
+                                               </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label class="mb-1"><strong>Company Phone</strong></label>
+                                            <input type="tel" formControlName="phone_company" class="form-control" placeholder="Company Phone">
+                                            <div *ngIf="registerForm.get('phone_company')?.errors != null && registerForm.get('phone_company')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('phone_company')?.errors?.required" class=" my-2"> Company Phone Is Requierd</p>
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label class="mb-1"><strong> Commerrcial Registration </strong></label>
+                                            <input type="text" class="form-control" placeholder=" Commerrcial Registration "
+                                            id="commercialRegistration"
+                                            maxlength="10"
+                                            minlength="10"
+                                            formControlName="commercialRegistration">
+                                            <div *ngIf="registerForm.get('commercialRegistration')?.errors != null && registerForm.get('commercialRegistration')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('commercialRegistration')?.errors?.required" class=" my-2"> Commerrcial Registration Is Requierd</p>
+                                                <p *ngIf="registerForm.get('commercialRegistration')?.errors?.minlength"  class="my-2 text-danger">The Commerrcial Registration must be at least 10 numbers</p>
+                                                <p *ngIf="registerForm.get('commercialRegistration')?.errors?.maxlength"  class="my-2 text-danger"> The Commerrcial Registration must not exceed 10 numbers</p>
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label class="mb-1"><strong>Tax Registration</strong></label>
+                                            <input class="form-control" 
+                                            id="taxRegistration"
+                                            formControlName="taxRegistration"
+                                              class=" form-control"
+                                              placeholder="Tax Registration"
+                                              type="text"
+                                              minlength="15"
+                                              maxlength="15">
+                                              <div *ngIf="registerForm.get('taxRegistration')?.errors != null && registerForm.get('taxRegistration')?.touched" class=" alert  my-2">
+                                                <p *ngIf="registerForm.get('taxRegistration')?.errors?.required " class="my-2 text-danger" >tax Registration Is Required</p>
+            
+                                                <p *ngIf="registerForm.get('taxRegistration')?.errors?.minlength"  class="my-2 text-danger">The Tax Registration must be at least 15 numbers</p>
+                                                <p *ngIf="registerForm.get('taxRegistration')?.errors?.maxlength"  class="my-2 text-danger"> The Tax Registration must not exceed 15 numbers and must be at least 10 numbers</p>
+            
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="currunce" class="mb-1"><strong> Choose Currency</strong></label>
+                                                <select class="form-control default-select" (change)="filterCurrncy($event)" formControlName="currency_id">
+                                                    <option  style="background-color:#363062; color: #fff;" selected></option>
+                                                    <option value=""*ngFor='let currency of allCurrency; let i = index '[value]="currency?.currency_id">{{currency.currency_name_en}}</option>
+                                                </select>
+                   
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="currunce" class="mb-1"><strong> Choose City</strong></label>
+                                                <select class="form-control default-select" (change)="filterCity($event)" formControlName="city_id">
+                                                    <option  style="background-color:#363062; color: #fff;" selected></option>
+                                                    <option value=""*ngFor='let city of allCities; let i = index '[value]="city?.city_id">{{city.city_name_en}}</option>
+                                                </select>
+                   
+                                        </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="phoneNumber" class="mb-1"><strong>Personal Phone Number</strong></label>
+                                            <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber">
+                                            <div *ngIf="registerForm.get('phoneNumber')?.errors != null && registerForm.get('phoneNumber')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('phoneNumber')?.errors?.required" class=" my-2"> Tax personal phone Number Is Requierd</p>
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                            <label for="user_name" class="mb-1"><strong>User Name</strong></label>
+                                            <input type="text" class="form-control" formControlName="user_name" id="user_name">
+                                            <div *ngIf="registerForm.get('user_name')?.errors != null && registerForm.get('user_name')?.touched" class=" alert  my-2">
+                                                <p  *ngIf="registerForm.get('user_name')?.errors?.required" class=" my-2"> User Name Is Requierd</p>
+                                                <p *ngIf="registerForm.get('user_name')?.errors?.minlength"  class="my-2 text-danger">The name must be at least 3 characters</p>
+                                                <p *ngIf="registerForm.get('user_name')?.errors?.maxlength"  class="my-2 text-danger"> The name must not exceed 20 characters</p>
+                                               </div>
+                                        </div>
+                                        <div class="col-lg-6 ">
+                                            <label class="mb-1"><strong>Password</strong></label>
+
+                                            <div class="input-group">
+
+                                                <input #inputPassword type="password" class="form-control" formControlName="password"  id="password" placeholder="Choose a safe one..">
+                                                <div *ngIf="registerForm.get('password')?.errors != null && registerForm.get('password')?.touched" class=" alert  my-2">
+                                                    <p  *ngIf="registerForm.get('password')?.errors?.required" class=" my-2"> Password Is Requierd</p>
+                                                    <ul  *ngIf="registerForm.get('password')?.errors?.pattern" class="text-start my-2"> 
+                                                        <li>Password must start with capital letter form A to Z</li>
+                                                        <li>Password must include special character</li>
+                                                        <li>Password must include numbers</li>
+                                                    </ul>
+                                                   </div>
+                                                <div class="input-group-append show-pass1 ">
+                                                    <span class="input-group-text "> 
+                                                        <i class="fa" [ngClass]="{'fa-eye-slash': toggleEye, 'fa-eye': !toggleEye}" (click)="toggleEyeIcon(inputPassword)"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                           	
+                                        </div>
+                                        <div class="text-center mt-4 w-75 m-auto">
+                                            <button  [disabled]="registerForm.invalid" type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                                        </div>
+                                    </form>
+                                    <div class="new-account mt-3 text-center">
+                                        <p>Already have an account? <a class="text-primary" [routerLink]="['/page-login']">Sign in</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

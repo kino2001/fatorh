@@ -1,0 +1,326 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="content-body ">
+	<div class="container-fluid ">
+
+        <p></p>
+
+        <div class="row page-titles mx-0">
+          <div class="col-sm-6 p-md-0">
+              <div class="welcome-text">
+                <h4> بيانات الفواتير</h4>
+
+                  <p class="mb-0">لوحة معلومات الأعمال</p>
+              </div>
+          </div>
+          <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="javascript:void(0)">الفواتير</a></li>
+                  <li class="breadcrumb-item active"><a href="javascript:void(0)">لوحة التحكم</a></li>
+              </ol>
+          </div>
+      </div>
+
+        <!-- row -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+        
+        <form class="m-2"> 
+          <button  (click)="openXl(content)" type="button" class="btn btn-sm btn-primary m-2"><i class="fa fa-plus color-white mx-1"></i> اضافة فاتورة</button>
+
+          <div class="form-group ">
+            <label for="seaarch" class="ml-2">قم بالبحث هنا</label>
+               <input class="form-control ml-2 w-100" type="text" name="seaarch"
+                [ngModelOptions]="{standalone: true}" id="seaarch" [(ngModel)]="term" placeholder="بحث ..."/>
+          </div>
+            <div class="table-responsive mx-2">
+              <table class="table  text-center table-bordered table-hover ">
+                <thead class="text-center">
+                <tr>
+                  <th scope="col" > #</th>
+                  <th scope="col" >  ملاحظة </th>
+                  <th scope="col"> تاريخ الفاتورة</th>
+                  <th scope="col"> رقم الفاتورة</th>
+                  <th scope="col"> السعر قبل الضريبة</th>
+                  <th scope="col"> السعر بعد الضريبة</th>
+			         	  <th scope="col"> خصم خاص</th>
+                  <th scope="col"> مبلغ الضريبة </th>
+                  
+                  <th scope="col">تعديل</th>
+                  <th scope="col">تأكيد الفاتورة</th>
+                  <th scope="col">Pdf تصدير </th>
+				            </tr>
+                </thead>
+                <tbody class="">
+                <tr *ngFor="let invoice of allInvoices | filter:term |paginate: {itemsPerPage:7, currentPage:p } |filter:term ; let i = index ">
+						 <td><ngb-highlight></ngb-highlight>{{i+1}} </td>
+						<td><ngb-highlight [result]="invoice.note"></ngb-highlight> </td>
+						<td><ngb-highlight [result]="invoice.invoice_date"></ngb-highlight> </td>
+						<td><ngb-highlight [result]="invoice.invoice_number"></ngb-highlight> </td>
+						<td><ngb-highlight [result]="invoice.price_before_tax"></ngb-highlight> </td>
+						<td><ngb-highlight [result]="invoice.price_after_tax"></ngb-highlight> </td>
+						<td><ngb-highlight [result]="invoice.Special_Discount"></ngb-highlight> </td>
+            <td><ngb-highlight [result]="invoice.tax_amount"></ngb-highlight> </td> 
+            
+						<!-- <td  class="action"> 
+						  <button (click)="changeStatus(user?.user_id, user.status)" class="btn" >
+							<i style="font-size: 25px;" class="fa fa-toggle-on {{ user.status==1 ? 'fa fa-toggle-on' : 'fa fa-toggle-off' }}" 
+							[ngStyle]="{ 'color': user.status == 1 ? '#2199E8' : 'rgb(216, 6, 6)' }"
+							></i>
+						  </button> 
+						  </td> -->
+	  
+				 
+	  
+							  <td  class="add-2 action c-pointer">
+									   <i (click)="getId(invoice?.invoice_id)" routerLink="/admin/update-user/{{invoice.invoice_id}}" 
+                      class="fa fa-pencil scale5" style="color:rgb(19, 174, 19)" *ngIf="invoice.is_confirmed == 0" ></i>
+                     <i (click)="getId(invoice?.invoice_id)" 
+                     class="fa fa-close" style="font-size: 25px;" *ngIf="invoice.is_confirmed == 1"></i>
+
+							  </td>
+		  
+							   <td  class="action  c-pointer">
+                  <button *ngIf="invoice.is_confirmed == 0"
+                   (click)="getInvoiceId(invoice?.invoice_id);openVerticallyCentered(dataConfirm)"
+                   class="btn btn-info btn-xs"  ><i class="fa fa-check-circle-o text-white"></i> تأكيد</button>
+							  
+	  
+								<span *ngIf="invoice.is_confirmed == 1" (click)="getId(invoice?.invoice_id)"
+							  	class="text-success" style="font-weight: 700;" >تم التأكيد</span>
+							  </td>
+					
+                <td  class="action  c-pointer">
+                  <i *ngIf="invoice.is_confirmed == 1" (click)="getInvoiceId(invoice?.invoice_id);openXlImage(imageContent)"
+                  class="fa fa-file-pdf-o text-danger" style="font-size: 25px;"></i>
+     
+                 <i *ngIf="invoice.is_confirmed == 0" (click)="getInvoiceId(invoice?.invoice_id)"
+                   class="fa fa-close "style="font-size: 25px;" ></i>
+                 </td>
+
+                </tr>
+                </tbody>
+              </table>
+              <pagination-controls  (pageChange)="p = $event" class="m-auto my-3" > </pagination-controls>                
+
+             </div>
+        
+             <!-- <mat-paginator [length]="100"
+             [pageSize]="10"
+             [pageSizeOptions]="[5, 10, 25, 100]">
+                  </mat-paginator>
+         -->
+        </form>
+
+        </div>
+        </div>
+      </div>
+        </div>
+        </div>
+
+
+
+
+              <!-- Add -->
+
+              <ng-template #content let-modal id="add">
+                <div class="modal-header">
+                <h4 class="modal-title">اضافة فاتورة</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                  <div class="authincation">
+                    <div class="container ">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-lg-12 ">
+                                <div class="authincation-content">
+                                    <div class="row no-gutters">
+                                        <div class="col-xl-12">
+                                            <div class="auth-form">
+                                             <div class="text-center mb-3">
+                                               <h2>فاتورتك</h2>
+                                              </div>
+                                                <form class="row form-group" [formGroup]="addInvoice">
+                                                  <div class="col-lg-4">
+                                                      <div class="card text-dark mb-3">
+                                                          <div class="card-header">تاريخ انشاء الفاتورة</div>
+                                                          <div class="card-body">
+                                                              <input type="date" class="form-control " formControlName="invoice_date" />
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <!---->
+                                                  <div class="col-lg-4">
+                                                      <div class="card text-dark mb-3">
+                                                          <div class="card-header">طريقة الدفع</div>
+                                                          <div class="card-body">
+                                                              <input type="text" class="form-control" formControlName="payment_method" />
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <!---->
+                                                                  
+                                                  <div class="col-lg-4">
+                                                    <div class="card text-dark mb-3">
+                                                        <div class="card-header">اختر الفرع</div>
+                                                        <div class="card-body">
+                                                            <select  class="form-select form-control  form-control-lg mb-3" aria-label=".form-select-lg example" name="" id=""
+                                                            (change)="filterData($event)" formControlName="branch_id">
+                                                            <option style="background-color:#363062; color: #fff;" selected></option>
+                                                            <option value=""*ngFor='let branch of allBranches; let i = index '[value]="branch?.branch_id">{{branch.branch_name_ar}}</option> 
+                                                            </select>                         
+                                                               </div>
+                                                    </div>
+                                                  </div>
+                                                                 
+                                                  <div class="col-lg-4">
+                                                    <div class="card text-dark mb-3">
+                                                        <div class="card-header">اختر المنتج</div>
+                                                        <div class="card-body">
+                                                            <select  class="form-select form-control  form-control-lg mb-3" aria-label=".form-select-lg example" name="" id=""
+                                                            (change)="filterData($event)" formControlName="product_id">
+                                                            <option style="background-color:#363062; color: #fff;" selected></option>
+                                                            <option value=""*ngFor='let product of allProducts; let i = index '[value]="product?.product_id">{{product.product_name_ar}}</option> 
+                                                            </select>                         
+                                                               </div>
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="col-lg-4">
+                                                    <div class="card text-dark mb-3">
+                                                        <div class="card-header">اختر العميل</div>
+                                                        <div class="card-body">
+                                                            <select  class="form-select form-control  form-control-lg mb-3" aria-label=".form-select-lg example" name="" id=""
+                                                            (change)="filterData($event)" formControlName="customer_id">
+                                                            <option style="background-color:#363062; color: #fff;" selected></option>
+                                                            <option value=""*ngFor='let customer of allCustomers; let i = index '[value]="customer?.customer_id">{{customer.customerNameAr}}</option> 
+                                                            </select>                         
+                                                               </div>
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  
+                                                  <button  (click)="addedData();dismiss('Cross click')" type="submit"
+                                                  class="btn btn-primary btn-block">اضافة فاتورة
+                                                  </button>
+      
+                                              </form>
+                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">الغاء</button>
+                </div>
+              </ng-template>
+
+
+
+                <!--confirm-->
+
+        <ng-template #dataConfirm let-modal>
+          <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body text-center">
+          <h3>هل تريد تأكيد فاتورتك ؟</h3>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">الغاء</button>
+          <button type="button" class="btn btn-primary" (click)="confirmInvoice();close('Close click')">تأكيد</button>
+
+          </div>
+        </ng-template>
+
+
+    <!-- choose template-->
+    <ng-template #imageContent let-modal id="add">
+      <div class="modal-header">
+      <h4 class="modal-title text-center">اختر نموذج فاتورتك</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+        <div class="authincation">
+          <div class="container ">
+              <div class="row justify-content-center align-items-center">
+                  <div class="col-lg-12 ">
+                      <div class="authincation-content">
+                          <div class="row no-gutters">
+                              <div class="col-xl-12">
+                                  <div class="auth-form">
+                                   <div class="text-center mb-3">
+                                     <h2>فاتورتك</h2>
+                                    </div>
+                                      <form class="row form-group" >
+                                        <div class="col-lg-6" *ngFor="let img of imageTemplate">
+                                            <div class="card text-dark mb-3 text-center ">
+                                                <div class="card-header d-flex justify-content-between">
+                                                  <h3> نموذج فاتورة رقم {{img.invoice_number}}</h3>
+                                                  <a href="https://fatorhtak.onrender.com/exportPdf/{{invoiceId}}/invoice/{{img.id}}">
+                                                    <button (click)="getTemplateId(img?.id);confirmTemplate()" 
+                                                    type="button" class="btn btn-sm btn-primary m-2">
+                                                    <i class="fa fa-plus color-white mx-1"></i>  اختر النموذج</button>
+                                                  </a>
+                                               
+                                                </div>
+                                                <div class="card-body">
+                                                  <img [src]="img?.imageSrc" alt="" >
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!---->
+                            
+                            
+                                        <!-- <div class="col-lg-4">
+                                          <div class="card text-dark mb-3">
+                                              <div class="card-header">status</div>
+                                              <div class="card-body">
+                                                  <select  class="form-select form-control default-select form-select-lg mb-3" aria-label=".form-select-lg example" name="" id=""
+                                                  (change)="filterStatus($event)" formControlName="status">
+                                                   <option style="background-color:#363062; color: #fff;" [value]="1" selected>Active</option>
+                                                   <option [value]="0">Disactive</option>
+                                                  </select>                         
+                                                     </div>
+                                          </div>
+                                        </div> -->
+                                        
+                                   
+                                        <!-- <button    (click)="addedData();dismiss('Cross click')" type="submit"
+                                        class="btn btn-primary btn-block">Add Customer
+                                        </button> -->
+
+                                    </form>
+                
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">الغاء</button>
+      </div>
+    </ng-template>
+
+

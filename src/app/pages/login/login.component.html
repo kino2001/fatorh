@@ -1,0 +1,76 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="authincation h-100">
+    <div class="container vh-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                <div class="text-center mb-3">
+                                    <h2>Fatorhtak</h2>
+                                </div>
+                                <h4 class="text-center mb-4">Sign in your account</h4>
+                                <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm)">
+                                    <div class="form-group">
+                                        <label for="name" class="mb-1"><strong>User Name</strong></label>
+                                        <input id="name"
+                                        formControlName="user_name"
+                                          class=" form-control " 
+                                          placeholder="User Name"
+                                          type="text">
+                                          <div *ngIf="loginForm.get('user_name')?.errors != null && loginForm.get('user_name')?.touched" class=" alert alert-danger my-2">
+                                            <p  *ngIf="loginForm.get('user_name')?.errors?.required" class=" my-2"> User Name Is Requierd</p>
+                                            <p *ngIf="loginForm.get('user_name')?.errors?.minlength"  class="my-2 text-danger">The name must be at least 3 characters</p>
+                                            <p *ngIf="loginForm.get('user_name')?.errors?.maxlength"  class="my-2 text-danger"> The name must not exceed 20 characters</p>
+                                           </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-1"><strong>Company Id Number</strong></label>
+                                        <input formControlName="company_id"
+                                        class=" form-control"
+                                        placeholder="Company Id"
+                                        type="text"
+                                        id="company_id">
+
+                                        <div *ngIf="loginForm.get('company_id')?.errors != null && loginForm.get('company_id')?.touched" class=" alert alert-danger my-2">
+                                            <p  *ngIf="loginForm.get('company_id')?.errors?.required" class=" my-2"> Company ID Is Requierd</p>
+                                           </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="mb-1"><strong>Password</strong></label>
+                                        <input     formControlName="password"
+                                        class=" form-control"
+                                        placeholder="Password"
+                                        type="password"
+                                         id="password">
+
+                                         <div *ngIf="loginForm.get('password')?.errors != null && loginForm.get('password')?.touched" class=" alert alert-danger my-2">
+                                            <p  *ngIf="loginForm.get('password')?.errors?.required" class=" my-2"> Password Is Requierd</p>
+                                            <ul  *ngIf="loginForm.get('password')?.errors?.pattern" class="text-start my-2"> 
+                                                <li>Password must start with capital letter form A to Z</li>
+                                                <li>Password must include special character</li>
+                                                <li>Password must include numbers</li>
+                                            </ul>
+                                           </div>
+                                    </div>
+                                
+                                    <div class="text-center">
+                                        <button  [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                                    </div>
+                                </form>
+                                <div class="new-account mt-3">
+                                    <p>Don't have an account? <a class="text-primary" [routerLink]="['/page-register']">Sign up</a></p>
+                                    <p>forgotten your password ? <a class="text-primary" [routerLink]="['/page-forgot-password']">click here</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

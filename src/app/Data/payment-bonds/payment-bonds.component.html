@@ -1,0 +1,288 @@
+<ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "medium" color = "#8743df" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="content-body ">
+	<div class="container-fluid ">
+
+        <p></p>
+
+        <div class="row page-titles mx-0">
+          <div class="col-sm-6 p-md-0">
+              <div class="welcome-text">
+                <h4>بيانات سندات الدفع</h4>
+
+                  <p class="mb-0">لوحة معلومات الأعمال</p>
+              </div>
+          </div>
+          <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="javascript:void(0)">سندات الدفع</a></li>
+                  <li class="breadcrumb-item active"><a href="javascript:void(0)">لوحة التحكم</a></li>
+              </ol>
+          </div>
+      </div>
+
+        <!-- row -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+        
+        <form class="m-2"> 
+          <button (click)="openXl(content)" type="button" class="btn btn-sm btn-primary m-2"><i class="fa fa-plus color-white mx-1"></i> اضافة سند دفع</button>
+
+          <div class="form-group ">
+            <label for="seaarch" class="ml-2">قم بالبحث هنا</label>
+               <input class="form-control ml-2 w-100" type="text" name="seaarch"
+                [ngModelOptions]="{standalone: true}" id="seaarch" [(ngModel)]="term" placeholder="بحث ..."/>
+          </div>
+            <div class="table-responsive mx-2">
+              <table class="table  text-center table-bordered table-hover ">
+                <thead >
+                <tr>
+                  <th scope="col" > #</th>
+                  <th scope="col" > محتوي الايصال </th>
+                  <th scope="col" > من شركة </th>
+                  <th scope="col" > الي شركة </th>
+                  <th scope="col" > اجمالي المبلغ </th>
+                  <th scope="col" > اليوم </th>
+                  <th scope="col">  تاريخ النشاء</th>
+                  <th scope="col">  عرض</th>
+                  <th scope="col">  رفع صوؤة سند دفع </th>
+                  <th scope="col">  عرض بعد التوقيع</th>
+
+
+                </tr>
+                </thead>
+                <tbody class="">
+                  
+
+                <tr *ngFor="let payment of allPaymentbonds | filter:term |paginate: {itemsPerPage:5, currentPage:p } |filter:term ; let i = index ">
+                  <td><ngb-highlight></ngb-highlight>{{i+1}} </td>
+                  <td><ngb-highlight [result]="payment.receipt_content"></ngb-highlight> </td>
+                  <td><ngb-highlight [result]="payment.from_company"></ngb-highlight> </td>
+                  <td><ngb-highlight [result]="payment.to_company"></ngb-highlight> </td>
+                  <td><ngb-highlight [result]="payment.total_many"></ngb-highlight> </td>
+                  <td><ngb-highlight [result]="payment.in_day"></ngb-highlight> </td>
+                  
+                  <td><ngb-highlight [result]="payment.created_date |date: 'dd/MM/yyyy'"></ngb-highlight></td> 
+
+              
+
+                        <td  class="add-2 action c-pointer">
+                                 <i (click)="getId(payment?.receipt_id)" routerLink="/admin/view-payment-bonds/{{payment.receipt_id}}"  
+                                 class="fa fa-info-circle" style="color:rgb(24, 35, 184);font-size: 25px;"></i>
+                        </td>
+
+               
+
+                  <td>
+                    <i class="fa fa-upload color-success c-pointer"  style="font-size: 25px; color:rgb(100, 19, 167)"
+                    (click)="getId(payment?.receipt_id);openVerticallyCentered(uploadData)"></i>
+                        
+                  </td>
+
+                  <td>
+                    <i (click)="getId(payment?.receipt_id)" routerLink="/admin/view-after-signing/{{payment.receipt_id}}" 
+                    class="fa fa-info-circle  c-pointer" *ngIf="payment.form_after_signing"
+                     style="font-size: 25px ; color:rgb(22, 217, 22)"></i>
+
+                    <i *ngIf="payment.form_after_signing == null"
+                    class="fa fa-close "
+                    style="font-size: 25px;" ></i>
+                  </td>
+                
+                  
+                  
+                </tr>
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event" class="m-auto my-3"> </pagination-controls>                
+
+             </div>
+        
+             <!-- <mat-paginator [length]="100"
+             [pageSize]="10"
+             [pageSizeOptions]="[5, 10, 25, 100]">
+                  </mat-paginator>
+         -->
+        </form>
+
+        </div>
+        </div>
+      </div>
+        </div>
+        </div>
+
+
+        <ng-template #content let-modal id="add">
+            <div class="modal-header">
+            <h4 class="modal-title">اضافة سند دفع</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+              <div class="authincation">
+                <div class="container ">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-lg-12 ">
+                            <div class="authincation-content">
+                                <div class="row no-gutters">
+                                    <div class="col-xl-12">
+                                        <div class="auth-form">
+                                         <div class="text-center mb-3">
+                                           <h2>فاتورتك</h2>
+                                          </div>
+                                            <form class="row form-group" [formGroup]="addPaymentbonds">
+
+                                                <div class="col-lg-12">
+                                                    <div class="card text-dark mb-3">
+                                                        <div class="card-header">اختار فاتورة</div>
+                                                        <div class="card-body">
+                                                            <select  class="form-select form-control default-select form-control-lg mb-3" aria-label=".form-select-lg example" name="" id=""
+                                                            (change)="filterId($event)" 
+                                                            formControlName="invoice_id">
+                                                            <option style="background-color:#363062; color: #fff;" > </option>
+                                                            <option value=""*ngFor='let invoice of allConfirmedInvoices; let i = index '[value]="invoice?.invoice_id">{{invoice.invoice_number}}</option> 
+                                                            </select>                         
+                                                               </div>
+                                                    </div>
+                                                  </div>
+                                                         
+                                              
+
+                                              <div class="col-lg-12" *ngIf="isInvoice">
+                                                  <div class="card text-dark mb-3">
+                                                      <div class="card-header"> محتوى الإيصال</div>
+                                                      <div class="card-body">
+                                                        <div class="read-content-body" >
+                                                            <h2 class="mb-4 text-center">إيصال سند دفع</h2>
+                                                            <div class=" ">
+                                                                	<div class="form-group row" >
+                                                                        <label for="date" class="col-sm-4 col-form-label col-form-label-lg h2">في تاريخ</label>
+                                                                       
+                                                                    <div class="col-sm-8">
+                                                                        <input id="date" type="date" class="form-control form-control-lg" formControlName="in_date"  placeholder="تاريخ اليوم">
+                                                                      </div>
+                                                                   </div>
+
+                                                                   <div class="form-group row">
+                                                                    <label for="day" class="col-sm-4 col-form-label col-form-label-lg h2">الموافق يوم</label>
+                                                                   
+                                                                    <div class="col-sm-8">
+                                                                        <input id="day" type="text" class="form-control form-control-lg" formControlName="in_day" placeholder=" اليوم">
+                                                                      </div>
+                                                                   </div>
+                                                                   <div class="form-group row">
+                                                                    <label for="tota;" class="col-sm-4 col-form-label col-form-label-lg h2"> تم قبض مبلغ وقدرة</label>
+                                                                   
+                                                                    <div class="col-sm-8">
+                                                                        <input id="total" type="text" class="form-control form-control-lg" formControlName="total_many"
+                                                                         [value]="allDetailsInputs?.price_after_tax" readonly [(ngModel)]="priceAfterTax" >
+                                                                      </div>
+                                                                   </div>
+                                                                     
+                                                                   <div class="form-group row">
+                                                                    <label for="from" class="col-sm-4 col-form-label col-form-label-lg h2"> من شركة </label>
+                                                                   
+                                                                    <div class="col-sm-8">
+                                                                        <input id="from" type="text" class="form-control form-control-lg" formControlName="from_company" 
+                                                                        [value]="allDetailsInputs?.company_Name_ar" readonly [(ngModel)]="companyNameAr">
+                                                                      </div>
+                                                                   </div>
+
+                                                                   <div class="form-group row">
+                                                                    <label for="to" class="col-sm-4 col-form-label col-form-label-lg h2"> الي شركة </label>
+                                                                   
+                                                                    <div class="col-sm-8">
+                                                                        <input id="to" type="text" class="form-control form-control-lg" formControlName="to_company" placeholder="اكتب اسم الشركة ">
+                                                                      </div>
+                                                                   </div>
+
+                                                                   <div class="form-group row">
+                                                                    <label for="Reason" class="col-sm-4 col-form-label col-form-label-lg h2">  بغرض</label>
+                                                                   
+                                                                    <div class="col-sm-8">
+                                                                        <input id="Reason" type="text" class="form-control form-control-lg" formControlName="reason" placeholder="اكتب الغرض">
+                                                                      </div>
+                                                                   </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="myTextarea" class="col-sm-4 col-form-label col-form-label-lg h2">  محتوي الإيصال</label>
+                                                                   
+                                                                    <div class="col-sm-12">
+                                                                        <textarea class="form-control " style="font: size 25px;" formControlName="receipt_content" 
+                                                                        id="myTextarea" name="myTextarea" rows="4" cols="50" [(ngModel)]="messageTextArea">
+                                                                        </textarea>
+                                                                      </div>
+                                                                   </div>
+                                                         
+                                                                   <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label col-form-label-lg h2">التوقيع </label>
+                                                                   
+                                                                    <div class="col-sm-8">
+                                                                      </div>
+                                                                   </div>
+                                                            </div>
+                                                          
+                                                   
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                     
+                                              <!---->
+                                    
+                                              
+                                         
+                                              <button   (click)="addedData()" type="submit"
+                                              class="btn btn-primary btn-block">اضافة سند الدفع
+                                              </button>
+  
+                                          </form>
+                      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">الغاء</button>
+            </div>
+          </ng-template>
+
+
+          <!-- upload-->
+
+          <ng-template #uploadData let-modal>
+            <div class="modal-header">
+            <h4 class="modal-title"></h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+              <h5 class="mb-4"><i class="fa fa-paperclip"></i> تحميل صورة سند</h5>
+
+                <div class="product-image">
+                  <img src="{{url}}" alt="">
+                  <input type="file" class="form-control" (change)="onFileChanged($event)"  [accept]="'image/*'">
+                      </div>
+                             
+                           
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">الغاء</button>
+            <button type="button" class="btn btn-primary" (click)="uploadFile();close('Close click')">تأكيد</button>
+  
+            </div>
+          </ng-template>
+
+
+
